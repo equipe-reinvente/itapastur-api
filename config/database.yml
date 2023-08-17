@@ -23,8 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: itapastur_api_development
-  database: itapastur-db
+  database: itapastur_db
   host: localhost
   username: postgres
   password: postgres
