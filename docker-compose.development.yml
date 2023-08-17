@@ -1,13 +1,19 @@
 version: '3'
 services:
-  db:
+  postgres:
     image: postgres:latest
+    container_name: itapastur-db
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: itapastur-db
+    volumes:
+      - /var/db:/data/postgres
+    ports:
+      - "5432:5432"
 
   web:
+    container_name: itapastur-web
     build: .
     command: rails server -p 3000 -b '0.0.0.0'
     volumes:
@@ -15,4 +21,4 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - db
+      - postgres
