@@ -35,6 +35,10 @@ class EnterprisesController < ApplicationController
             @enterprise_photo.save
             @address.save
             @enterprise.save
+
+            render json: {enterprise: @enterprise}, status: :ok
+        else
+            render json: {error: "Erro na requisição!"}, status: :unprocessable_entity
         end   
     end
 
