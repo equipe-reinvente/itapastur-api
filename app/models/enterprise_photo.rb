@@ -1,0 +1,2 @@
+class EnterprisePhoto < ApplicationRecord
+end
