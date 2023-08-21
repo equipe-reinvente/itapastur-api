@@ -1,4 +1,6 @@
 class EnterprisesController < ApplicationController
+    before_action :authorize
+
     def create
         @address = Address.new(address_params)
         @enterprise_photo = Enterprise_photo.new()
