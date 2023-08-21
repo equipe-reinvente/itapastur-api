@@ -31,6 +31,10 @@ class EnterprisesController < ApplicationController
             @enterprise.user = User.find(params[:user_id])
             @enterprise.address = @address
             @enterprise.enterprise_photo = @enterprise_photo
+
+            @enterprise_photo.save
+            @address.save
+            @enterprise.save
         end   
     end
 
