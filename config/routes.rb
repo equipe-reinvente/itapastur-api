@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   post "/enterprises", to: "enterprises#create"
   # events
   post "/events", to: "events#create"
-
+  # comments
+  post "/comments", to: "comments#create"
 end
