@@ -1,6 +1,25 @@
 class EnterprisesController < ApplicationController
     before_action :authorize
 
+    def enterprise
+        @enterprise = Enterprise.find(params[:enterprise_id])
+        
+        render json: {enterprise: @enterprise}, status: :ok
+
+    else
+
+        render json: {error: "Empresa não encontrada!"}, status: :not_found
+    end
+
+    def user_enterprises
+        user = User.find(params[:user_id])
+        @enterprises = user.enterprises
+
+        render json: {enterprises: @enterprises}, status: :ok
+    else
+        render json: {error: "Usuário não encontrado"}, status: :not_found
+    end
+
     def create
         @address = Address.new(address_params)
         @enterprise_photo = Enterprise_photo.new()
