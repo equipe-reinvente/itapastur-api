@@ -10,4 +10,7 @@ Rails.application.routes.draw do
   post "/events", to: "events#create"
   # comments
   post "/comments", to: "comments#create"
+  # favorites
+  post "/like", to: "favorites#like"
+  get "/likes/:user_id", to: "favorites#user_likes"
 end
