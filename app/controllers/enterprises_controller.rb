@@ -1,15 +1,6 @@
 class EnterprisesController < ApplicationController
     before_action :authorize
 
-    def enterprise
-        @enterprise = Enterprise.find(params[:enterprise_id])
-        if @enterprise
-            render json: {enterprise: @enterprise}, status: :ok
-        else
-            render json: {error: "Empresa não encontrada!"}, status: :not_found
-        end
-    end
-
     def enterprises_by_category
         categories = {
           'Lojas' => :lojas,
@@ -33,6 +24,7 @@ class EnterprisesController < ApplicationController
               image_one: enterprise.image_one.url,
               image_two: enterprise.image_two.url,
               image_three: enterprise.image_three.url,
+              favorites: Favorite.where(enterprise_id: enterprise.id).count,
               address: {
                 street: enterprise.address.street,
                 number: enterprise.address.number,
@@ -48,16 +40,6 @@ class EnterprisesController < ApplicationController
       
         render json: { enterprises: enterprises_by_category }, status: :ok
       end
-
-    def user_enterprises
-        user = User.find(params[:user_id])
-        @enterprises = user.enterprises
-        if @enterprises
-            render json: {enterprises: @enterprises}, status: :ok
-        else
-            render json: {error: "Usuário não encontrado"}, status: :not_found
-        end
-    end
 
     def create
         @address = Address.new(address_params)

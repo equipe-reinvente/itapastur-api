@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   # categories
   post "/categories", to: "categories#create"
   # enterprises
-  get "/entreprises/:user_id", to: "enterprises#user_enterprises"
-  get "/enterprise/:enterprise_id", to: "enterprises#enterprise"
   post "/enterprises", to: "enterprises#create"
   get "/categories/enterprises", to: "enterprises#enterprises_by_category"
   # events
