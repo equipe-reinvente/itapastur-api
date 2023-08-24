@@ -4,8 +4,7 @@ class CreateEvents < ActiveRecord::Migration[7.0]
       t.string :name
       t.string :date
       t.string :time
-      t.string :description
-      t.string :photo_url
+      t.text :description
       t.references :address, null: false, foreign_key: true
       t.references :enterprise, null: false, foreign_key: true
 

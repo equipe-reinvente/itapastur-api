@@ -2,18 +2,16 @@
 
 one:
   name: MyString
-  description: MyString
+  description: MyText
   cellphone: MyString
   user: one
   category: one
-  enterprise_photo: one
   address: one
 
 two:
   name: MyString
-  description: MyString
+  description: MyText
   cellphone: MyString
   user: two
   category: two
-  enterprise_photo: two
   address: two

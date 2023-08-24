@@ -4,8 +4,7 @@ one:
   name: MyString
   date: MyString
   time: MyString
-  description: MyString
-  photo_url: MyString
+  description: MyText
   address: one
   enterprise: one
 
@@ -13,7 +12,6 @@ two:
   name: MyString
   date: MyString
   time: MyString
-  description: MyString
-  photo_url: MyString
+  description: MyText
   address: two
   enterprise: two
