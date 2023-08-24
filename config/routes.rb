@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/entreprises/:user_id", to: "enterprises#user_enterprises"
   get "/enterprise/:enterprise_id", to: "enterprises#enterprise"
   post "/enterprises", to: "enterprises#create"
+  get "/categories/enterprises", to: "enterprises#enterprises_by_category"
   # events
   post "/events", to: "events#create"
   # comments
