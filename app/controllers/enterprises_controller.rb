@@ -1,6 +1,15 @@
 class EnterprisesController < ApplicationController
     before_action :authorize
 
+    def enterprise
+        @enterprise = Enterprise.find(params[:enterprise_id])
+        if @enterprise
+            render json: {enterprise: @enterprise}, status: :ok
+        else
+            render json: {error: "Empresa não encontrada!"}, status: :not_found
+        end
+    end
+
     def enterprises_by_category
         categories = {
           'Lojas' => :lojas,
@@ -39,11 +48,6 @@ class EnterprisesController < ApplicationController
       
         render json: { enterprises: enterprises_by_category }, status: :ok
       end
-
-    def enterprises
-        enterprises = Enterprise.all
-        render json: {enterprises: enterprises}
-    end
 
     def user_enterprises
         user = User.find(params[:user_id])
