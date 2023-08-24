@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   # users
   resource :users, only: [:create]
   post "/login", to: "users#login"
+  # categories
+  post "/categories", to: "categories#create"
   # enterprises
   get "/entreprises/:user_id", to: "enterprises#user_enterprises"
   get "/enterprise/:enterprise_id", to: "enterprises#enterprise"

@@ -21,6 +21,7 @@ class EnterprisesController < ApplicationController
 
     def create
         @address = Address.new(address_params)
+        
         if @address.save
             @enterprise = Enterprise.new(enterprise_params)
             @enterprise.user = User.find(params[:user_id])
