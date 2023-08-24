@@ -14,4 +14,6 @@ Rails.application.routes.draw do
   # favorites
   post "/like", to: "favorites#like"
   get "/likes/:user_id", to: "favorites#user_likes"
+  # token healthy check
+  get "/healthy_token", to: "application#authorize"
 end
