@@ -1,7 +1,8 @@
 class Enterprise < ApplicationRecord
   belongs_to :user
   belongs_to :category
-  has_one :address, dependent: :destroy
-  has_many :favorites, dependent: :destroy
-  has_many_attached :images
+  belongs_to :address
+  has_one_attached :image_one
+  has_one_attached :image_two
+  has_one_attached :image_three
 end
