@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for itapastur-api on 2023-08-24T07:16:57-03:00
+# fly.toml app configuration file generated for itapastur-api on 2023-08-24T19:29:15-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -8,9 +8,6 @@ primary_region = "gig"
 console_command = "/rails/bin/rails console"
 
 [build]
-
-[processes]
-  app = "bundle exec rails server -b 0.0.0.0 -p 3000"
 
 [http_service]
   internal_port = 3000
@@ -23,3 +20,6 @@ console_command = "/rails/bin/rails console"
 [[statics]]
   guest_path = "/app/public"
   url_prefix = "/"
+
+[processes]
+  app = "bundle exec rails server -b 0.0.0.0 -p 3000"
