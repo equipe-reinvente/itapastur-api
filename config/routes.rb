@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   # utils comands because fly.io stops when run in terminal :(
   post "utils/seed", to: "utils#seed_database"
 
+  get "/forward/:enterprise_id", to: "utils#forward"
 end
