@@ -1,4 +1,3 @@
-
 loja = Category.create(name: "Loja")
 ponto = Category.create(name: "Ponto Turístico")
 artesao = Category.create(name: "Artesão")
@@ -25,7 +24,7 @@ francis.image_two.attach(io: File.open('app/assets/images/francis2.png'), filena
 francis.image_three.attach(io: File.open('app/assets/images/francis3.png'), filename: "francis3.png")
 francis.save!
 
-endereco_marcia = Adress.create(street: "Rua Major Barreto", number: "1591", neighborhood: "Centro")
+endereco_marcia = Address.create(street: "Rua Major Barreto", number: "1591", neighborhood: "Centro")
 marcia = Enterprise.new(name: "MM Variedades", description: "Moda Adulta, Infantil e infanto juvenil", cellphone: "(85) 99143-9169")
 marcia.user = master
 marcia.address = endereco_marcia
