@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-    before_action :authorize, only: [:view_user]
+    before_action :authorize, only: [:view_user, :update, :destroy]
 
     def create
         @user = User.new(user_params)
@@ -10,6 +10,25 @@ class UsersController < ApplicationController
         else
             render json: {error: "Usuário ou senha invalidos"},
             status: :unprocessable_entity
+        end
+    end
+
+    def update
+        @user = User.find(params[:user_id])
+
+        if @user.update(user_params)
+            render json: {user: @user}, status: :ok
+        else
+            render json: {error: "Erro ao atualizar o usuário!"}, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @user = User.find(params[:user_id])
+        if @user.destroy
+            render json: {message: "Usuário deletado com sucesso!"}, status: :ok
+        else
+            render json: {error: "Erro ao deletar o usuário!"}, status: :unprocessable_entity
         end
     end
 

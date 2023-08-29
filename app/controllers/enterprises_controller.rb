@@ -19,6 +19,7 @@ class EnterprisesController < ApplicationController
           image_three: enterprise.image_three.url,
           favorites: Favorite.where(enterprise_id: enterprise.id).count,
           address: {
+            id: enterprise.address.id,
             street: enterprise.address.street,
             number: enterprise.address.number,
             neighborhood: enterprise.address.neighborhood,
@@ -30,6 +31,26 @@ class EnterprisesController < ApplicationController
       end
     
       render json: { user_enterprises: enterprises_data }, status: :ok
+    end
+
+    def destroy_enterprise
+      @enterprise = Enterprise.find(params[:enterprise_id])
+      if @enterprise.destroy
+        render json: {message: "Empresa deletada com sucesso!"}, status: :ok
+      else
+        render json: {error: "Não foi possivel deletar a empresa!"}, status: :unprocessable_entity
+      end
+    end
+
+    def edit_enterprise
+      @enterprise = Enterprise.find(params[:enterprise_id])
+      @address = Address.find(params[:address_id])
+
+      if @enterprise.update(enterprise_params) && @address.update(address_params)
+        render json: {enterprise: @enterprise}, status: :ok
+      else
+        render json: {error: "Erro na atualização da empresa!"}, status: :unprocessable_entity
+      end
     end
 
     def enterprises_by_category
@@ -57,6 +78,7 @@ class EnterprisesController < ApplicationController
               image_three: enterprise.image_three.url,
               favorites: Favorite.where(enterprise_id: enterprise.id).count,
               address: {
+                id: enterprise.address.id,
                 street: enterprise.address.street,
                 number: enterprise.address.number,
                 neighborhood: enterprise.address.neighborhood,
