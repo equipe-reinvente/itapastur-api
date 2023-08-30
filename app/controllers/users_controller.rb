@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 
             render json: {user: @user,
                           token: token,
+                          avatar: @user.avatar.url,
                           enterprises: user_enterprises,
                           liked_enterprises: liked},
             status: :ok
@@ -73,6 +74,7 @@ class UsersController < ApplicationController
         if @user
             render json: {
                 user: @user,
+                avatar: @user.avatar.url,
                 enterprises: user_enterprises,
                 liked_enterprises: liked,
             },
@@ -86,6 +88,6 @@ class UsersController < ApplicationController
     private
 
     def user_params
-        params.require(:user).permit(:email,:password, :name)
+        params.permit(:email,:password, :name, :is_turist, :avatar)
     end
 end
