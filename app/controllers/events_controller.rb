@@ -18,6 +18,34 @@ class EventsController < ApplicationController
         end
     end
     
+    def get_events
+        events = Event.all
+        all_events = events.each do |event|
+            {
+                id: event.id,
+                name: event.name,
+                data: event.date,
+                time: event.time,
+                description: event.description,
+                image: event.image.url,
+                address: {
+                    event.address.id,
+                    event.address.street,
+                    event.address.number,
+                    event.address.neighborhood,
+                    event.address.latitude,
+                    event.address.longitude
+                }
+            }
+        end
+
+        if all_events
+            render json: {events: all_events}, status: :ok
+        else
+            render json: {error: "Eventos não encontrados!"}, status: :not_found
+        end
+    end
+
     private
 
     def event_params
