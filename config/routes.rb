@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
   # events
   post "/events", to: "events#create"
+  get "/events", to: "events#get_events"
   # comments
   post "/comments", to: "comments#create"
   get "/enterprise/:enterprise_id/comments", to: "comments#get_enterprise_comments"
