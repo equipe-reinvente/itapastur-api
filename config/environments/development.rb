@@ -13,7 +13,7 @@ Rails.application.configure do
 
   # Show full error reports.
   config.consider_all_requests_local = true
-
+  config.hosts << "presently-enabled-monkey.ngrok-free.app"
   # Enable server timing
   config.server_timing = true
   config.hosts << "itapastur-api.fly.dev"

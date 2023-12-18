@@ -29,12 +29,12 @@ class EventsController < ApplicationController
                 description: event.description,
                 image: event.image.url,
                 address: {
-                    event.address.id,
-                    event.address.street,
-                    event.address.number,
-                    event.address.neighborhood,
-                    event.address.latitude,
-                    event.address.longitude
+                    address_id: event.address.id,
+                    street: event.address.street,
+                    number: event.address.number,
+                    neighborhood: event.address.neighborhood,
+                    latitude: event.address.latitude,
+                    longitude: event.address.longitude
                 }
             }
         end

@@ -44,7 +44,7 @@ class EnterprisesController < ApplicationController
 
     def edit_enterprise
       @enterprise = Enterprise.find(params[:enterprise_id])
-      @address = Address.find(params[:address_id])
+      @address = Address.find(@enterprise.address_id)
 
       if @enterprise.update(enterprise_params) && @address.update(address_params)
         render json: {enterprise: @enterprise}, status: :ok
@@ -55,11 +55,11 @@ class EnterprisesController < ApplicationController
 
     def enterprises_by_category
         categories = {
-          'Lojas' => :lojas,
-          'Pontos Turísticos' => :pontos,
-          'Artesões' => :artesoes
+          'Loja' => :lojas,
+          'Ponto Turístico' => :pontos,
+          'Artesão' => :artesoes
         }
-      
+
         enterprises_by_category = {}
       
         categories.each do |category_name, category_key|
@@ -87,7 +87,7 @@ class EnterprisesController < ApplicationController
               }
             }
           end
-      
+
           enterprises_by_category[category_key] = enterprises_data
         end
       

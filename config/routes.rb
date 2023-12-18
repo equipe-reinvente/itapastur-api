@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   # comments
   post "/comments", to: "comments#create"
   get "/enterprise/:enterprise_id/comments", to: "comments#get_enterprise_comments"
-  patch "/comments/:comment_id", to: "comments#update_comment"
+  patch "/comments/:comment_id", to: "comments#edit_comment"
   delete "/comments/:comment_id", to: "comments#destroy_comment"
   # favorites
   post "/like", to: "favorites#like"
