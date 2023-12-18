@@ -15,7 +15,7 @@ Essas são as tecnologias utilizadas na API:
 ![Diagrama](./Itapastur.jpg)
 ## Rotas 🛤️
 As notas rotas podem ser vistas através da documentação do Postman:
-- [Rotas](https://web.postman.co/documentation/27353559-14b0b971-9c0a-4118-b19e-059f3dc4d214/publish?workspaceId=d7e30ca3-6042-491f-81aa-fba41b13f8b8)
+- [Rotas](https://documenter.getpostman.com/view/27353559/2s9Ykoc1UT)
   
 ## Rodando o Projeto 🚀
 
@@ -23,8 +23,8 @@ As notas rotas podem ser vistas através da documentação do Postman:
 
 1. Clone o repositório:
 ```
-git clone -b develop https://github.com/StudentSync/StudentSync-api
-cd StudentSync-api
+git clone -b develop https://github.com/equipe-reinvente/itapastur-api
+cd itapastur-api
 ```
 2. Instale as dependências:
 
