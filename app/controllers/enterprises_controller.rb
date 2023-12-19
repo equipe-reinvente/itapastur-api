@@ -8,12 +8,9 @@ class EnterprisesController < ApplicationController
     end
 
     def destroy_enterprise
-      @enterprise = Enterprise.find(params[:enterprise_id])
-      if @enterprise.destroy
-        render json: {message: "Empresa deletada com sucesso!"}, status: :ok
-      else
-        render json: {error: "Não foi possivel deletar a empresa!"}, status: :unprocessable_entity
-      end
+      result = Enterprises::Interactors::Destroy.call(enterprise_id: params[:enterprise_id])
+
+      render json: result.message
     end
 
     def edit_enterprise
