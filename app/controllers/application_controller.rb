@@ -1,9 +1,4 @@
 class ApplicationController < ActionController::API
-    SECRET_KEY = 'p&qpfv8RKPxkM6D2'
-
-    def encode_token(payload)
-        JWT.encode(payload, SECRET_KEY)
-    end
 
     def decode_token
         auth_header = request.headers['Authorization']

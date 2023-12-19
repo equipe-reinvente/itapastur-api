@@ -2,14 +2,12 @@ class UsersController < ApplicationController
     before_action :authorize, only: [:view_user, :update, :destroy]
 
     def create
-        @user = User.new(user_params)
-        if @user.save
-            token = encode_token({user_id: @user.id})
-            render json: {user: @user, token: token},
-            status: :ok
+        result = Users::Organizers::Create.call(user_params: user_params)
+
+        if result.success?
+            render json: {token: result.token, user: result.user}
         else
-            render json: {error: "Usuário ou senha invalidos"},
-            status: :unprocessable_entity
+            render json: result.message
         end
     end
 
