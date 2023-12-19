@@ -41,23 +41,15 @@ class UsersController < ApplicationController
     end
 
     def view_user
-        @user = User.find(params[:user_id])
-        enterprises = Enterprise.where(user_id: @user.id)
-        liked_enterprises = Favorite.where(user_id: @user.id)
-        liked = []
-        user_enterprises = []
-        enterprises.each do |enterprise|
-            user_enterprises.push(enterprise.id)
-        end
-        liked_enterprises.each do |enterprise|
-            liked.push(enterprise.enterprise_id)
-        end
-        if @user
+        user = User.find(params[:user_id])
+        result = Users::Organizers::ViewUser.call(user: user)
+
+        if result.success?
             render json: {
-                user: @user,
-                avatar: @user.avatar.url,
-                enterprises: user_enterprises,
-                liked_enterprises: liked,
+                user: user,
+                avatar: user.avatar.url,
+                enterprises: result.user_enterprises,
+                liked_enterprises: result.liked_enterprises,
             },
             status: :ok
         else

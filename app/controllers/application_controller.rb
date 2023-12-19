@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
-
+    SECRET_KEY = 'p&qpfv8RKPxkM6D2'
+    
     def decode_token
         auth_header = request.headers['Authorization']
         if auth_header
