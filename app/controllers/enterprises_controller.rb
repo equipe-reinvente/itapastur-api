@@ -2,7 +2,7 @@ class EnterprisesController < ApplicationController
     before_action :authorize
 
     def user_enterprises
-      result = Enterprises::Interactors::GetDetailedUserEnterprises.call(user_id: params[:user_id])
+      result = Enterprises::Interactors::GetUserDetailed.call(user_id: params[:user_id])
     
       render json: { user_enterprises: result.user_enterprises }, status: :ok
     end

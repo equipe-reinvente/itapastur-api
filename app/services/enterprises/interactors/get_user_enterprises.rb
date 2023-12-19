@@ -1,6 +1,6 @@
 module Enterprises
   module Interactors
-    class GetUserEnterprises
+    class GetUser
       include Interactor
 
       delegate :user, to: :context

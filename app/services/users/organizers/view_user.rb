@@ -3,8 +3,8 @@ module Users
       class ViewUser
       include Interactor::Organizer
 
-      organize Enterprises::Interactors::GetUserEnterprises,
-               Enterprises::Interactors::GetLikedEnterprises
+      organize Enterprises::Interactors::GetUser,
+               Enterprises::Interactors::GetLiked
       end
   end
 end

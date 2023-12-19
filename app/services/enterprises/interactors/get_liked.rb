@@ -1,6 +1,6 @@
 module Enterprises
   module Interactors
-    class GetLikedEnterprises
+    class GetLiked
       include Interactor
 
       delegate :user, to: :context

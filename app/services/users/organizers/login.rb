@@ -5,8 +5,8 @@ module Users
 
       organize Users::Interactors::Authenticate,
                Tokens::Interactors::Encode,
-               Enterprises::Interactors::GetUserEnterprises,
-               Enterprises::Interactors::GetLikedEnterprises
+               Enterprises::Interactors::GetUser,
+               Enterprises::Interactors::GetLiked
       end
   end
 end

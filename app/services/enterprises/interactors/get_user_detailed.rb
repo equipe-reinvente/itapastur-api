@@ -1,6 +1,6 @@
 module Enterprises
   module Interactors
-    class GetDetailedUserEnterprises
+    class GetUserDetailed
       include Interactor
 
       delegate :user_id, to: :context
