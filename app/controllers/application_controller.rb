@@ -9,4 +9,8 @@ class ApplicationController < ActionController::API
             render json: {message: "Você precisa estar logado!"}, status: :unauthorized
         end
     end
+
+    def address_params 
+        params.permit(:street, :number, :neighborhood, :latitude, :longitude)
+    end
 end

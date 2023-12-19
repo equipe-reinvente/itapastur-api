@@ -43,10 +43,6 @@ class EnterprisesController < ApplicationController
 
     private 
 
-    def address_params 
-        params.permit(:street, :number, :neighborhood, :latitude, :longitude)
-    end
-
     def enterprise_params
         params.permit(:name, :description, :cellphone, :image_one, :image_two, :image_three, :category_id, :user_id)
     end
