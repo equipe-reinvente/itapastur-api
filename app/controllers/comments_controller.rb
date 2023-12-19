@@ -18,12 +18,12 @@ class CommentsController < ApplicationController
     end
     
     def edit_comment
-        @comment = Comment.find(params[:comment_id])
+        result = Comments::Interactors::Update.call(comment_id: params[:comment_id], text_content: params[:text_content])
 
-        if @comment.update(text_content: params[:text_content])
-            render json: {comment: @comment}
+        if result.success?
+            render json: context.comment
         else
-            render json: {error: "Erro ao alterar o comentário!"}, status: :unprocessable_entity
+            render json: context.message
         end
     end
 
