@@ -24,12 +24,8 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        @user = User.find(params[:user_id])
-        if @user.destroy
-            render json: {message: "Usuário deletado com sucesso!"}, status: :ok
-        else
-            render json: {error: "Erro ao deletar o usuário!"}, status: :unprocessable_entity
-        end
+        result = Users::Interactors::Destroy.call(user_id: params[:user_id])
+        render json: result.message
     end
 
     def login
