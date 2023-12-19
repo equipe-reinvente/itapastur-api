@@ -2,21 +2,9 @@ class CommentsController < ApplicationController
     before_action :authorize
 
     def get_enterprise_comments
-        comments = Comment.where(enterprise_id: params[:enterprise_id])
-        enterprise_comments = []
-        comments.each do |comment|
-            comment_data = {
-                id: comment.id,
-                text_content: comment.text_content,
-                enterprise_id: comment.enterprise_id,
-                user_id: comment.user_id,
-                user_name: comment.user.name,
-                user_avatar: comment.user.avatar.url
-            }
-            enterprise_comments << comment_data
-        end
+        result = Comments::Interactors::GetEnterprise.call(enterprise_id: params['enterprise_id'])
         
-        render json: {comments: enterprise_comments}, status: :ok
+        render json: {comments: result.enterprise_comments}, status: :ok
     end
 
     def create
