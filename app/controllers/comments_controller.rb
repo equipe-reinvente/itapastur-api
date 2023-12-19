@@ -28,13 +28,8 @@ class CommentsController < ApplicationController
     end
 
     def destroy_comment
-        @comment = Comment.find(params[:comment_id])
-
-        if @comment.destroy
-            render json: {message: "Comentário deletado!"}, status: :ok
-        else
-            render json: {error: "Erro ao deletar comentário!"}, status: :unprocessable_entity
-        end
+        result = Comments::Interactors::Destroy.call(comment_id: params[:comment_id])
+        render json: result.message
     end
 
     private
