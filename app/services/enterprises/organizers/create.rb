@@ -1,4 +1,4 @@
-module Users
+module Enterprises
   module Organizers
       class Create
       include Interactor::Organizer
