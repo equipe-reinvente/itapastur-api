@@ -14,13 +14,14 @@ class EnterprisesController < ApplicationController
     end
 
     def edit_enterprise
-      @enterprise = Enterprise.find(params[:enterprise_id])
-      @address = Address.find(@enterprise.address_id)
+      result = Enterprises::Interactors::Update.call(enterprise_id: params[:enterprise_id],
+                                                     address_params: address_params,
+                                                     enterprise_params: enterprise_params)
 
-      if @enterprise.update(enterprise_params) && @address.update(address_params)
-        render json: {enterprise: @enterprise}, status: :ok
+      if result.success?
+        render json: result.enterprise
       else
-        render json: {error: "Erro na atualização da empresa!"}, status: :unprocessable_entity
+        render json: result.message
       end
     end
 
