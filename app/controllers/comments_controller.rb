@@ -8,12 +8,12 @@ class CommentsController < ApplicationController
     end
 
     def create
-        @comment = Comment.new(comments_params)
+        result = Comments::Interactors::Create.call(comment_params: comment_params)
 
-        if @comment.save
-            render json: {comment: @comment}, status: :ok
+        if result.success?
+            render json: result.comment
         else
-            render json: {error: "Empresa ou usuário não encontrados!"}, status: :not_found
+            render json: result.message
         end
     end
     
