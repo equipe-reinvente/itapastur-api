@@ -14,12 +14,12 @@ class UsersController < ApplicationController
     end
 
     def update
-        @user = User.find(params[:user_id])
+        result = Users::Interactors::Update.call(user_id: params[:user_id], user_params: user_params)
 
-        if @user.update(user_params)
-            render json: {user: @user}, status: :ok
+        if result.success?
+            render json: result.user
         else
-            render json: {error: "Erro ao atualizar o usuário!"}, status: :unprocessable_entity
+            render json: result.message
         end
     end
 
