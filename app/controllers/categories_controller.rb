@@ -2,11 +2,12 @@ class CategoriesController < ApplicationController
     before_action :authorize
     
     def create
-        @category = Category.new(category_params)
-        if @category.save
-            render json: {category: @category}, status: :ok
+        result = Categories::Interactors::Create.call(category_params: category_params)
+
+        if result.success?
+            render json: result.category
         else
-            render json: {error: "Erro na criação da categoria!"}, status: :unprocessable_entity
+            render json: result.message
         end
     end
 
