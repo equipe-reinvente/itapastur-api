@@ -26,61 +26,19 @@ class EnterprisesController < ApplicationController
     end
 
     def enterprises_by_category
-        categories = {
-          'Loja' => :lojas,
-          'Ponto Turístico' => :pontos,
-          'Artesão' => :artesoes
-        }
-
-        enterprises_by_category = {}
+        result = Enterprises::Interactors::GetByCategory.call()
       
-        categories.each do |category_name, category_key|
-          enterprises = Enterprise.joins(:category).where(categories: { name: category_name })
-      
-          enterprises_data = enterprises.map do |enterprise|
-            {
-              id: enterprise.id,
-              name: enterprise.name,
-              description: enterprise.description,
-              cellphone: enterprise.cellphone,
-              user_id: enterprise.user_id,
-              category: enterprise.category.name,
-              image_one: enterprise.image_one.url,
-              image_two: enterprise.image_two.url,
-              image_three: enterprise.image_three.url,
-              favorites: Favorite.where(enterprise_id: enterprise.id).count,
-              address: {
-                id: enterprise.address.id,
-                street: enterprise.address.street,
-                number: enterprise.address.number,
-                neighborhood: enterprise.address.neighborhood,
-                latitude: enterprise.address.latitude,
-                longitude: enterprise.address.longitude
-              }
-            }
-          end
-
-          enterprises_by_category[category_key] = enterprises_data
-        end
-      
-        render json: { enterprises: enterprises_by_category }, status: :ok
+        render json: { enterprises: result.enterprises_by_category }, status: :ok
       end
 
     def create
-        @address = Address.new(address_params)
+      result = Enterprises::Organizers::Create.call(enterprise_params: enterprise_params, address_params: address_params)
 
-        if @address.save
-            @enterprise = Enterprise.new(enterprise_params)
-            @enterprise.address = @address
-
-            if @enterprise.save
-                render json: {enterprise: @enterprise}, status: :ok
-            else
-                render json: {error: "Erro na requisição!"}, status: :unprocessable_entity
-            end   
-        else
-            render json: {error: "Endereço inválido!"}, status: :unprocessable_entity
-        end
+      if result.success?
+        render json: result.enterprise
+      else
+        render json: result.message
+      end
     end
 
     private 
